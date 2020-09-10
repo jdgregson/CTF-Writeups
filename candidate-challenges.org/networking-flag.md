@@ -37,3 +37,6 @@ What could be done then? Incognito mode would protect my account and recommendat
 At long last I was looking at it. This is what the `li` wanted me to see. I guess this wouldn't have hurt my recommendations after all.
 
 ![samin: "great talk"](images/samim-great-talk.png)
+
+## Flags
+- flag{aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1RcXVMUEkyOXp6WQ==}
