@@ -6,7 +6,7 @@ While browsing an interesting website (hxxp://candidate-challenges.org/challenge
 
 ![1: "in plain sight", 2: "flag{Something_Here}", 3: "Gur novyvgl gb qrpbqr inevbhf pvcuref vf n hfrshy fxvyy sbe frphevgl nanylfgf."](images/flag-Something_Here.png)
 
-1)  This was a hint, and the fact that it links to itself indicates that the hint is specifically about being in plain sight, right here.
+1)  This was a hint, and the fact that it linked to itself indicated that the hint was specifically about the flag being in plain sight, right there.
 2)  This was the flag: `flag{Something_Here}`
 3)  This was randomly typed text, a red herring.
 
