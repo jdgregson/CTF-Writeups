@@ -1,5 +1,5 @@
 # CTF Writeups
-Below you can find writeups for CTFs and CTF-like things I participated in.
+Below you can find writeups for CTFs and CTF-like things I have participated in.
 
 | CTF | CTF URL | Participation Date | Difficulty | Flags Captured |
 |------|-----|--------------------|------------|----------------|
