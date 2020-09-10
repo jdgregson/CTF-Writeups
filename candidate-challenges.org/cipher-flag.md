@@ -1,6 +1,5 @@
-# Cipher Flag
-Jonathan Gregson
-08/26/2020
+# Candidate-Challenges.org - Cipher Flag
+Jonathan Gregson, 08 August 2020
 
 ## Findings
 While browsing an interesting website (hxxp://candidate-challenges.org/challenges/) I found a string of text. While appearing random at first, this text began to resemble a base64-encoded string. But I was not able to decode it:
