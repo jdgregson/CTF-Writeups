@@ -40,7 +40,7 @@ Still, I could see the word "flag" in the output, so I figured that I was close,
 
 ![CyberChef found that it was gzipped data](images/flag-aHR0cDovL3BocmFjay5vcmcvaXNzdWVzLzcvMy5odG1s.png)
 
-And sure enough, CyberChef came back with the flag. That the data was simply the flag as plaintext, gzipped and then base64-encoded.
+And sure enough, CyberChef came back with the flag. The data was simply the flag as plaintext, gzipped and then base64-encoded.
 
 `flag{aHR0cDovL3BocmFjay5vcmcvaXNzdWVzLzcvMy5odG1s}`
 
