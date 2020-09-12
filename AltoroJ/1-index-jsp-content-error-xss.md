@@ -30,7 +30,7 @@ It worked! This told me that the application was taking my input and attempting 
 ## Exploitation
 A user's ability to get angle brackets into the DOM almost guarantees there is an XSS vulnerability or five somewhere. There are just too many things you can abuse in the DOM. I knew I could open HTML tags, so I tried to close one as well, but the output kept coming back sanitized. Some combinations of angle brackets seemed to be sanitized and some did not. Anyway, I decided to focus on the classic `<img src=x onerror=alert(1) foo="` trick and hope the `<img>` tag closed safely somewhere and executed the payload. But what I got back was odd:
 
-![?content=<img%20src=x%20onerror=alert(1)%20foo=" => Failed due to](failed-due-to.png)
+![?content=<img%20src=x%20onerror=alert(1)%20foo=" => Failed due to](images/failed-due-to.png)
 
 `Failed due to `? It was like an error was still occurring, but the exception output was being filtered, or there was none at all. I was getting this same result whenever I tried `onload=`, or `onerror=`, but not `onloa=`. In fact, every event handler I tried caused this, as well as style attributes and a few other things.
 
@@ -38,7 +38,7 @@ I thought there must be something in place which is filtering my input after all
 
 I noted that the site felt "old" overall, and thought that this filter might not be up to date on newer DOM events like touch events. I dropped in `ontouchstart=alert(1` and, with a litter user interaction, it worked!
 
-![?content=%3Cimg%20src=%22//jdgregson.com/cat.png%22%20ontouchstart=alert(1](touch-start-xss.gif)
+![?content=%3Cimg%20src=%22//jdgregson.com/cat.png%22%20ontouchstart=alert(1](images/touch-start-xss.gif)
 
 But this wasn't nearly good enough to feed by hunger for XSS. Not only did this require the XSS victim to be using a touch-based device, it also required the user to touch the image, and the site to place the image in a large, touchable spot. I needed payload that would trigger when the URL was loaded without any further interaction from the user.
 
