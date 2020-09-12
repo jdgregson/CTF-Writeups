@@ -21,18 +21,18 @@ Looks like we could. We could even get recursive and have `index.jsp` include it
 
 ![http://demo.testfire.net/index.jsp?content=../index.jsp](images/index-jsp-include-index-jsp.png)
 
-This is definitely vulnerable to LFI, but I'm still craving for XSS. I'll come back to the FLI/traversal aspect of this parameter another time. Focusing on XSS again, I thought the error message from earlier looked interesting. It was like it was returning part of an exception to me without filtering it. I checked if I could include an angle bracket:
+This was definitely vulnerable to LFI, but I was still craving for XSS. I'll come back to the FLI/traversal aspect of this parameter another time. Focusing on XSS again, I thought the error message from earlier looked interesting. It was like it was returning part of an exception to me without filtering it. I checked if I could include an angle bracket:
 
 ![http://demo.testfire.net/index.jsp?content=nothing<here](images/content-nothing-here.png)
 
-It worked! This told me that the application was taking my input and attempting to access system resources without validating it, and then returning exceptions to me, again without validating them. There was so much going on here, but again, back to XSS.
+It worked! This suggested to me that the application was taking my input and attempting to access system resources without validating it, and then returning exceptions to me, again without validating them. There was so much going on here, but again, back to XSS.
 
 ## Exploitation
 A user's ability to get angle brackets into the DOM almost guarantees there is an XSS vulnerability or five somewhere. There are just too many things you can abuse in the DOM. I knew I could open HTML tags, so I tried to close one as well, but the output kept coming back sanitized. Some combinations of angle brackets seemed to be sanitized and some did not. Anyway, I decided to focus on the classic `<img src=x onerror=alert(1) foo="` trick and hope the `<img>` tag closed safely somewhere and executed the payload. But what I got back was odd:
 
 ![?content=<img%20src=x%20onerror=alert(1)%20foo=" => Failed due to](images/failed-due-to.png)
 
-`Failed due to `? It was like an error was still occurring, but the exception output was being filtered, or there was none at all. I was getting this same result whenever I tried `onload=`, or `onerror=`, but not `onloa=`. In fact, every event handler I tried caused this, as well as style attributes and a few other things.
+`Failed due to `? It was like an error was still occurring, but the exception output was being filtered, or there was none at all. I was getting this same result whenever I tried `onload=`, or `onerror=`, but not `onloa=`. In fact, every event attribute I tried caused this, as well as style attributes and a few other things.
 
 I thought there must be something in place which is filtering my input after all, and blocking it if it detects certain known dangerous inputs. I was still able to include image tags and even display remote images, I just couldn't bind any event listeners to them in the HTML tag. It was frustrating - I knew I was so close. But I also knew that filtering input and output by looking for matches on a deny list is a terrible security approach, because developers inevitably miss something. As a developer, I can attest to this.
 
@@ -42,7 +42,7 @@ I noted that the site felt "old" overall, and thought that this filter might not
 
 But this wasn't nearly good enough to feed by hunger for XSS. Not only did this require the XSS victim to be using a touch-based device, it also required the user to touch the image, and the site to place the image in a large, touchable spot. I needed payload that would trigger when the URL was loaded without any further interaction from the user.
 
-I went back to trying to bypass this XSS filter. I tried using null bytes before, in the middle or, or end of the `onload=` attribute, but it always either broke the attribute or was blocked. I found that many or all HTML5 event attributes were not blocked, but most of them don't allow for execution on load, or don't apply to the tags I was using.
+I went back to trying to bypass this XSS filter. I tried using null bytes before, in the middle of, or end of the `onload=` attribute, but it always either broke the attribute or was blocked. I found that many or all HTML5 event attributes were not blocked, but most of them don't allow for execution on load, or don't apply to the tags I was using.
 
 Many of the newer HTML5 events could be caused to fire on load, such as media events like `loadstart`, `loadeddata`, and `loadend`. But unfortunately, none of these events are fired by classic HTML tags like `<img>`. To make matters worse, the tags that will fire them are actually supposed to be used as a nested set of tags like:
 
