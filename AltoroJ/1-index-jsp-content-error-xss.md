@@ -36,11 +36,11 @@ A user's ability to get angle brackets into the DOM almost guarantees there is a
 
 I thought there must be something in place which was filtering and blocking my input if it detected certain known malicious strings. I was still able to include image tags and even display remote images, I just couldn't bind any event listeners to them in the HTML tag. It was frustrating -- I knew I was so close. But I also knew that filtering input and output by looking for matches on a deny list is a terrible security approach, because developers inevitably miss something, or fail to keep libraries up to date with the platform and language.
 
-I noted that the site felt "old" overall, and thought that this filter might not be up to date on newer DOM events like touch events. I dropped in `ontouchstart=alert(1` and, with a litter user interaction, it worked!
+I noted that the site felt "old" overall, and thought that this filter might not be up to date on newer DOM events like touch events. I dropped in `ontouchstart=alert(1` and, with a little user interaction, it worked!
 
 ![?content=%3Cimg%20src=%22//jdgregson.com/cat.png%22%20ontouchstart=alert(1](images/touch-start-xss.gif)
 
-But this wasn't nearly good enough to feed by hunger for XSS. Not only did this require the XSS victim to be using a touch-based device, it also required the user to touch the image, and the site to place the image in a large, touchable spot. I needed a payload that would trigger when the URL was loaded without any further interaction from the user.
+But this wasn't nearly good enough to feed my hunger for XSS. Not only did this require the XSS victim to be using a touch-based device, it also required the site to place the image in a large, visible, touchable spot, and the user to actually touch the image. I needed a payload that would trigger when the URL was loaded without any further interaction from the user.
 
 I went back to trying to bypass this XSS filter. I tried using null bytes before, in the middle of, or end of the `onload=` attribute, but it always either broke the attribute or was blocked. I found that many or all HTML5 event attributes were not blocked, but most of them don't allow for execution on load, or don't apply to the tags I was using.
 
