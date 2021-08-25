@@ -6,11 +6,11 @@ While browsing an interesting website (hxxp://candidate-challenges.org/challenge
 
 ![Make a connection to 3.20.143.21 port 31337. Do NOT use HTTP.](images/Make-a-connection-to-3-20-143-21-port-31337-Do-NOT-use-HTTP.png)
 
-I don't usually follow the advice of `li` tags that aren't nested in an `ol` or `ul`, but time it was different. This `li` talked to me like it knew me, and I somehow knew that my future depended on this, this... connection.
+I don't usually follow the advice of `li` tags that aren't nested in an `ol` or `ul`, but this time it was different. This `li` talked to me like it knew me, and I somehow knew that my future depended on this, this... connection.
 
 I had to do it.
 
-Despite how inviting this challenge was, I wasn't about to put my beloved laptop at risk. My main concern was that the remote server was going to exploit a 0-day in my OpenSSH client and pop a shell on *my* box. I know what you're thinking: "Nobody is going to burn a high value 0-day trying to hack your silly computer". And you're probably right. The keyword there being "probably". Even if there was little risk, it still wasn't a risk I was going to take.
+Despite how inviting this challenge was, I wasn't about to put my beloved laptop at risk. My main concern was that the remote server was going to exploit a 0-day in my OpenSSH client and pop a shell on *my* box. I know what you're thinking: "Nobody is going to burn a high value 0-day trying to hack your silly computer". And you're probably right. The keyword there being "probably." Even if there was little risk, it still wasn't a risk I was going to take.
 
 Instead I decided to become like them. I would become an `li` tag. I mean an EC2 instance. Once logged into one of my EC2 boxes I took the leap:
 
