@@ -21,7 +21,7 @@ There was also a flag when you view source on the `/challenges/` page: `flag{Vi3
 There was nothing particularly interesting to me about this flag, other than that fact that it was automatically nested in `<li>` tags by Chrome when you open developer tools, and you must dig for it. But if you view source, it is right at the bottom of the page. Firefox does not move the comment around in the same way.
 
 ## Followup Findings
-The findings above were my initial take, but it just didn't sit right with me for several days. I couldn't shake the feeling that I was wrong to conclude that it the "Gur novyvgl gb" text a red herring. It still looked readable, almost like a substitution cipher or some simple transformation had been applied to an actual plaintext. I looked around the page for some clues as to how many shifts it might need, tried one or two bits in either direction, but couldn't really get anything useful:
+The findings above were my initial take, but it just didn't sit right with me for several days. I couldn't shake the feeling that I was wrong to conclude that the "Gur novyvgl gb" text was a red herring. It still looked readable, almost like a substitution cipher or some simple transformation had been applied to an actual plaintext. I looked around the page for some clues as to how many shifts it might need, tried one or two bits in either direction, but couldn't really get anything useful:
 
 ![Unhelpful bitshifting in CyberChef](images/cyberchef-bitshift.png)
 
